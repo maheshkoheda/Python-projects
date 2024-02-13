@@ -24,7 +24,7 @@ def send_email(subject, message, sender_email, receiver_email, password):
         msg.attach(MIMEText(message, 'plain'))
 
         # Connect to the SMTP server and send the email
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 587) as smtp:
             smtp.set_debuglevel(1)
             smtp.login(sender_email, password)
             smtp.sendmail(sender_email, receiver_email, msg.as_string())
@@ -52,8 +52,8 @@ def monitor_cpu_threshold(threshold, interval=1):
             if cpu_percent > threshold:
                 subject = "High CPU Usage Alert"
                 message = f"CPU usage is at {cpu_percent}%, which exceeds the threshold of {threshold}%."
-                sender_email = "maheshkoheda5"  # Change this to your sender email
-                receiver_email = "kohedamahesh5"  # Change this to your recipient email
+                sender_email = "maheshkoheda5@gmail.com"  # Change this to your sender email
+                receiver_email = "kohedamahesh5@gmail.com"  # Change this to your recipient email
                 password = "fwgs twkf oaui bat"  # Change this to your email password
 
                 send_email(subject, message, sender_email, receiver_email, password)
