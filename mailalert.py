@@ -58,7 +58,7 @@ def monitor_cpu_threshold(threshold, interval=1):
                 message = f"CPU usage is at {cpu_percent}%, which exceeds the threshold of {threshold}%."
                 sender_email = "xxxx@gmail.com"  # Change this to your sender email
                 receiver_email = "xxxx@gmail.com"  # Change this to your recipient email
-                password = "xxxx xxxx xxxx xxxx"  # Change this to your email password
+                password = "xxxx xxxx xxxx xxxx"  # Change this to your email password from Security-> App-> password generated. Note, 2 factor authentication is required on gmail.
 
                 send_email(subject, message, sender_email, receiver_email, password)
 
