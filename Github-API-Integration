@@ -1,0 +1,33 @@
+# program to demonstrate integration with GitHub to fetch the 
+# details of Users who created fork requests(Active) on my AWS Glue and Athena Github repo.
+
+import requests
+
+# URL to fetch fork requests from the GitHub API
+url = f'https://api.github.com/repos/maheshkoheda/AWS-Glue-and-Athena/forks'
+
+# Make a GET request to fetch fork requests data from the GitHub API
+response = requests.get(url)  # Add headers=headers inside get() for authentication
+
+# Only if the response is successful
+if response.status_code == 200:
+    # Convert the JSON response to a dictionary
+    forks = response.json()
+
+    # Create an empty dictionary to store fork creators and their counts
+    fork_creators = {}
+
+    # Iterate through each fork request and extract the creator's name
+    for fork in forks:
+        creator = fork['owner']['login']
+        if creator in fork_creators:
+            fork_creators[creator] += 1
+        else:
+            fork_creators[creator] = 1
+
+    # Display the dictionary of fork creators and their counts
+    print("fork Creators and Counts:")
+    for creator, count in fork_creators.items():
+        print(f"{creator}: {count} fork(s)")
+else:
+    print(f"Failed to fetch data. Status code: {response.status_code}")
